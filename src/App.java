@@ -552,6 +552,6 @@ public class App {
     }
 
     public static void main(String[] args) {
-        q19();
+        //coloque a funcao da questao aqui
     }
 }
