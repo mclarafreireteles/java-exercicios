@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 public class App {
 
@@ -317,7 +318,6 @@ public class App {
             for (int i = 1; i < numero; i++) {
                 int menor = numero - i;
                 fatorial = acc * menor;
-                // numero--;
                 acc = fatorial;
                 System.out.println(fatorial);
             }
@@ -409,7 +409,146 @@ public class App {
     }
 
     public static void q20(){
+        Scanner scanner = new Scanner(System.in);
+        final int TAMANHO_VETOR = 20;
+
+        int[] todosOsNumeros = new int[TAMANHO_VETOR];
+        int[] par = new int[TAMANHO_VETOR];
+        int[] impar = new int[TAMANHO_VETOR];
+
+        int contadorPar = 0;
+        int contadorImpar = 0;
+
+        System.out.println("Por favor, digite 20 números inteiros:");
+
+        for (int i = 0; i < TAMANHO_VETOR; i++) {
+            System.out.print("Digite o " + (i + 1) + "º número: ");
+            int numeroAtual = scanner.nextInt();
+
+            todosOsNumeros[i] = numeroAtual;
+
+            if (numeroAtual % 2 == 0) {
+                par[contadorPar] = numeroAtual;
+                contadorPar++;
+            } else {
+                impar[contadorImpar] = numeroAtual;
+                contadorImpar++;
+            }
+        }
+
+        System.out.println("\n=============================================");
+        System.out.println("--- VETOR COMPLETO ---");
+        System.out.println(Arrays.toString(todosOsNumeros));
+
+        System.out.println("\n--- VETOR DE PARES ---");
+        int[] paresReais = Arrays.copyOf(par, contadorPar);
+        System.out.println(Arrays.toString(paresReais));
         
+        System.out.println("\n--- VETOR DE ÍMPARES ---");
+        int[] imparesReais = Arrays.copyOf(impar, contadorImpar);
+        System.out.println(Arrays.toString(imparesReais));
+        System.out.println("=============================================");
+
+        scanner.close();
+    }
+
+    public static void q21(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite a primeira String: ");
+        String str1 = scanner.nextLine();
+
+        System.out.print("Digite a segunda String: ");
+        String str2 = scanner.nextLine();
+
+        System.out.println("\n--- Análise das Strings ---");
+        System.out.println("Conteúdo da primeira String: \"" + str1 + "\"");
+        System.out.println("Comprimento: " + str1.length() + " caracteres.");
+        
+        System.out.println("\nConteúdo da segunda String: \"" + str2 + "\"");
+        System.out.println("Comprimento: " + str2.length() + " caracteres.");
+        
+        System.out.println("\n--- Comparações ---");
+
+        if (str1.length() == str2.length()) {
+            System.out.println("As duas Strings possuem o mesmo comprimento.");
+        } else {
+            System.out.println("As duas Strings possuem comprimentos diferentes.");
+        }
+
+        if (str1.equals(str2)) {
+            System.out.println("O conteúdo das duas Strings é igual.");
+        } else {
+            System.out.println("O conteúdo das duas Strings é diferente.");
+        }
+
+        scanner.close();
+    }
+
+    public static void q22(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite um número inteiro para ser invertido: ");
+        int numeroOriginal = scanner.nextInt();
+
+        int numeroRevertido = 0;
+        int numeroParaReverter = numeroOriginal;
+
+        while (numeroParaReverter != 0) {
+            int digito = numeroParaReverter % 10;
+            numeroRevertido = numeroRevertido * 10 + digito;
+            numeroParaReverter = numeroParaReverter / 10;
+        }
+
+        System.out.println("O reverso de " + numeroOriginal + " é: " + numeroRevertido);
+
+        scanner.close();
+    }
+
+    public static void q23(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite o primeiro valor: ");
+        double valor1 = scanner.nextDouble();
+
+        System.out.print("Digite o segundo valor: ");
+        double valor2 = scanner.nextDouble();
+
+        System.out.print("Digite a operação (soma, subtracao, multiplicacao, divisao): ");
+        String operacao = scanner.next();
+
+        double resultado = 0;
+        boolean operacaoValida = true;
+
+        switch (operacao.toLowerCase()) {
+            case "soma":
+                resultado = valor1 + valor2;
+                break;
+            case "subtracao":
+                resultado = valor1 - valor2;
+                break;
+            case "multiplicacao":
+                resultado = valor1 * valor2;
+                break;
+            case "divisao":
+                if (valor2 != 0) {
+                    resultado = valor1 / valor2;
+                } else {
+                    System.out.println("Erro: Divisão por zero não é permitida.");
+                    operacaoValida = false;
+                }
+                break;
+            default:
+                System.out.println("Erro: Operação inválida.");
+                operacaoValida = false;
+                break;
+        }
+
+        if (operacaoValida) {
+            System.out.println("O resultado da " + operacao + " é: " + resultado);
+        }
+
+        scanner.close();
     }
 
     public static void main(String[] args) {
